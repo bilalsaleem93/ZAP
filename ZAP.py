@@ -10,7 +10,7 @@ from zapv2 import ZAPv2
 target = sys.argv[1]
 apikey = '8vu57oglkbscompeh3vjiqk7gk'  # Change to match the API key set in ZAP, or use None if the API key is disabled
 #time.sleep(40)
-subprocess.Popen(['/home/ec2-kali/jenkins_slave/workspace/zap/zap.sh','-daemon'],stdout=open(os.devnull,'w'))
+subprocess.call(['/home/ec2-kali/jenkins_slave/workspace/zap/zap.sh','-daemon'],stdout=open(os.devnull,'w'))
 #
 # By default ZAP API client will connect to port 8080
 zap = ZAPv2(apikey=apikey)
