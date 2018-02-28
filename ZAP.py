@@ -1,14 +1,19 @@
 import time
+import sys
+import os
+import subprocess
 from pprint import pprint
 from zapv2 import ZAPv2
 
-target = 'https://www.medibank.com.au/home/'
-apikey = None # Change to match the API key set in ZAP, or use None if the API key is disabled
+target = sys.argv[1]
+apikey = '8vu57oglkbscompeh3vjiqk7gk' # Change to match the API key set in ZAP, or use None if the API key is disabled
 #
+subprocess.Popen(['/usr/share/zaproxy/zap.sh','-daemon'],stdout=open(os.devnull,'w'))
+
 # By default ZAP API client will connect to port 8080
 zap = ZAPv2(apikey=apikey)
 # Use the line below if ZAP is not listening on port 8080, for example, if listening on port 8090
-#zap = ZAPv2(apikey=apikey, proxies={'http': 'http://127.0.0.1:8081', 'https': 'http://127.0.0.1:8081'})
+zap = ZAPv2(apikey=apikey, proxies={'http': 'http://127.0.0.1:8081', 'https': 'http://127.0.0.1:8081'})
 
 # Proxy a request to the target so that ZAP has something to deal with
 print('Accessing target {}'.format(target))
@@ -42,8 +47,10 @@ while (int(zap.ascan.status(scanid)) < 100):
 
 print ('Active Scan completed')
 
+
 # Report the results
 
 print ('Hosts: {}'.format(', '.join(zap.core.hosts)))
 print ('Alerts: ')
 pprint (zap.core.alerts())
+zap.core.shutdown()
