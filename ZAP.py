@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import time
 import sys
 import os
@@ -6,10 +7,10 @@ from pprint import pprint
 from zapv2 import ZAPv2
 
 target = sys.argv[1]
-apikey = '8vu57oglkbscompeh3vjiqk7gk' # Change to match the API key set in ZAP, or use None if the API key is disabled
-#
-subprocess.Popen(['/home/ec2-kali/jenkins_slave/workspace/zap/zap.sh','-daemon'],stdout=open(os.devnull,'w'))
+apikey = '8vu57oglkbscompeh3vjiqk7gk'  # Change to match the API key set in ZAP, or use None if the API key is disabled
 
+subprocess.call(['/home/ec2-kali/jenkins_slave/workspace/zap/zap.sh','-daemon'],stdout=open(os.devnull,'w'))
+#
 # By default ZAP API client will connect to port 8080
 zap = ZAPv2(apikey=apikey)
 # Use the line below if ZAP is not listening on port 8080, for example, if listening on port 8090
@@ -20,6 +21,7 @@ print('Accessing target {}'.format(target))
 zap.urlopen(target)
 # Give the sites tree a chance to get updated
 time.sleep(2)
+
 
 print('Spidering target {}'.format(target))
 scanid = zap.spider.scan(target)
