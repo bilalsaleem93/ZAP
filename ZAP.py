@@ -27,17 +27,17 @@ time.sleep(2)
 print('Spidering target {}'.format(target))
 scanid = zap.spider.scan(target)
 # Give the Spider a chance to start
-time.sleep(2)
+time.sleep(5)
 while (int(zap.spider.status(scanid)) < 100):
     # Loop until the spider has finished
     print('Spider progress %: {}'.format(zap.spider.status(scanid)))
-    time.sleep(2)
+    time.sleep(5)
 
 print ('Spider completed')
 
 while (int(zap.pscan.records_to_scan) > 0):
       print ('Records to passive scan : {}'.format(zap.pscan.records_to_scan))
-      time.sleep(2)
+      time.sleep(5)
 
 print ('Passive Scan completed')
 
