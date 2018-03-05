@@ -8,7 +8,8 @@ from zapv2 import ZAPv2
 
 
 target = sys.argv[1]
-apikey = sys.argv[2]  # Change to match the API key set in ZAP, or use None if the API key is disabled
+#apikey = sys.argv[2]  # Change to match the API key set in ZAP, or use None if the API key is disabled
+apikey = None
 #time.sleep(20)
 #subprocess.Popen(['/home/ec2-kali/jenkins_slave/workspace/zap/zap.sh','-daemon'],stdout=open(os.devnull,'w'))
 #
