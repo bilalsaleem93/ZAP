@@ -14,7 +14,7 @@ apikey = None
 #subprocess.Popen(['/home/ec2-kali/jenkins_slave/workspace/zap/zap.sh','-daemon'],stdout=open(os.devnull,'w'))
 #
 # By default ZAP API client will connect to port 8080
-zap = ZAPv2()
+zap = ZAPv2(apikey=apikey)
 # Use the line below if ZAP is not listening on port 8080, for example, if listening on port 8090
 #zap = ZAPv2(apikey=apikey, proxies={'http': 'http://127.0.0.1:8081', 'https': 'http://127.0.0.1:8081'})
 
