@@ -8,6 +8,7 @@ from zapv2 import ZAPv2
 
 
 target = sys.argv[1]
+report = sys.argv[2]+".html"
 #apikey = sys.argv[2]  # Change to match the API key set in ZAP, or use None if the API key is disabled
 apikey = None
 #time.sleep(20)
@@ -54,6 +55,9 @@ print ('Active Scan completed')
 
 # Report the results
 
+fHTML=open(report, 'w')
+fHTML.write(zap.core.htmlreport())
+fHTML.close()  
 print ('Hosts: {}'.format(', '.join(zap.core.hosts)))
 print ('Alerts: ')
 pprint (zap.core.alerts())
